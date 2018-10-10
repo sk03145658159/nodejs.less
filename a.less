@@ -1,0 +1,63 @@
+@import "b.less";
+// 小屏
+.container{
+  &{
+    width: @width1;
+    height: auto;
+    margin:0 auto;
+  }
+  & .row{
+    width:100%;
+    height:200px;
+    overflow: hidden;
+  }
+}
+.colsmall(@i:1) when (@i<=@cols){
+  .con-s-@{i}{
+    width:@i/@cols*100%;
+    float:left;
+  }
+  .colsmall(@i:@i+1);
+}
+.con-s-hide{
+  display:none;
+}
+.colsmall();
+// 中屏
+@media screen and (min-width:@width2){
+  .container{
+    width:@width2;
+  }
+  .colmed(@i:1) when (@i<=@cols){
+    .con-m-@{i}{
+      width:@i/@cols*100%;
+      float:left;
+    }
+    .colmed(@i:@i+1);
+  }
+  .con-m-hide{
+    display:none;
+  }
+  .colmed();
+}
+// 大屏
+@media screen and (min-width:@width3){
+  .container{
+    width:@width3;
+  }
+  .colbig(@i:1) when (@i<=@cols){
+    .con-l-@{i}{
+      width:@i/@cols*100%;
+      float:left;
+    }
+    .colbig(@i:@i+1);
+  }
+  .con-m-hide{
+    display:block;
+  }
+
+  .con-s-hide{
+    display:block;
+  }
+  .colbig();
+}
